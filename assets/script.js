@@ -13,30 +13,19 @@ function generatePassword() {
 
     var promptPassword = window.prompt('how many characters would you like your password to contain?');
     //validate prompt answer
-    if (promptPassword >= 8 && promptPassword <= 128 ) {
-        console.log('sucess');
-        //use return to call it again and stop the rest of this function from running
-      
+    if (promptPassword >= 8 && promptPassword <= 128) {
+        if(confirm("would you like your password to contain upper case letters?")){
+            chars += symbols;
+            console.log(chars)
+        }
+
+        if (confirm("would you like your password to contain lowercase letters?")){
+            chars += lowercase;
+            console.log(chars)
+        }
+
     } else
     return window.alert("enter valid number")
-
-//confirm promptsssssss
-    var confirmOk = window.confirm("click OK to confirm including special characters");
-    //validate confirm
-    if (special characters = true) {chars += symbols
-        console.log('special characters');
-    
-    } else
-    return window.alert("click ok")
-
-    var confirmOk = window.confirm("click OK to confirm including numeric characters");
-
-    var confirmOk = window.confirm("click ok to confirm including lowercase characters");
-
-    var confirmOk = window.confirm("click ok to confirm including uppercase characters");
-
-
-
 
 
 
@@ -46,12 +35,6 @@ function generatePassword() {
     //    b- lowercase, uppercase, numbers, special characters
     // 2- validate the input
     // 3- generate password bassed on criteria
-
-
-
-
-
-
 
 
     // 4- display password to the page
