@@ -1,44 +1,70 @@
 // Assignment code here
-var lowercase = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,,r,s,t,u,v,,w,x,y,z";
-var uppercase ="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
-var numbers ="0,1,2,3,4,5,6,7,8,9,";
-var symbols ="!,@,#,$,%,^,&,*,_,-,+,=";
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var uppercase ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers ="0123456789";
+var symbols ="!@#$%^&*_-+=";
 var chars = '';
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+var passwordEl = document.querySelector("#password");
+
+
+
+var guanteeCharacters = ""; 
+
 function generatePassword() {
     console.log("hello")
 
 
-    var promptPassword = window.prompt('how many characters would you like your password to contain?');
+    // Spread Operator
+    var fullCharacters = [
+        ...lowercase.split(""),
+        ...uppercase.split(""),
+        ...numbers.split(""),
+        ...symbols.split(""),
+    ]; 
+
+
+    var randomCharacters = "" // random remaining charac // 
+
+    var promptCriteria = window.confirm('password must contain 8-128 characters with uppercase & lowercase letters, numbers and symbols');
+
+    var promptPassword = window.prompt('how many characters would you like your password to contain?'); 
     //validate prompt answer
     if (promptPassword >= 8 && promptPassword <= 128) {
         if(confirm("would you like your password to contain upper case letters?")){
-            chars += symbols;
+            var randomSymbol = symbols.charAt(Math.floor(Math.random() * symbols.length));
+            
+            guanteeCharacters += randomSymbol;
             console.log(chars)
         }
 
         if (confirm("would you like your password to contain lowercase letters?")){
-            chars += lowercase;
+            var randomLowerCase = lowercase.charAt(Math.floor(Math.random() * lowercase.length));;
+            guanteeCharacters += randomLowerCase;
             console.log(chars)
         }
 
-    } else
-    return window.alert("enter valid number")
+        
+
+    }  else {
+        return window.alert("enter valid number")
+    }
+
+    var length = fullCharacters.length
+    var remainingCharacter = Number(promptPassword) - Number(guanteeCharacters.length) // 8 - 3 = 5
+    for ( var i = 0; i < remainingCharacter; i++ ) {
+        randomCharacters += fullCharacters.join("").charAt(Math.floor(Math.random() * length));
+     }
+
+    const password = guanteeCharacters + randomCharacters;
 
 
-
-    //ask length numbers symbbols  upper,lower, 
-    // 1- prompt the user for the password criteria
-    //    a- password length 8 < 128
-    //    b- lowercase, uppercase, numbers, special characters
-    // 2- validate the input
-    // 3- generate password bassed on criteria
+    // passwordEl.value = chars;
 
 
-    // 4- display password to the page
-    return "generated password will go here"; 
+    return password 
 
 }
 // Write password to the #password input
